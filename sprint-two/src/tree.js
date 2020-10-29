@@ -17,17 +17,20 @@ treeMethods.addChild = function(value) {
 
 treeMethods.contains = function(target) {
   var parentsTree = this;
+  var result = false;
   var findTarget = function(target, currentTree) {
     if (currentTree.value === target) {
-      return true;
+      result = true;
     } else {
       for (var i = 0; i < currentTree.children.length; i++) {
-        return findTarget(target, currentTree.children[i]);
+        if (!result) {
+          result = findTarget(target, currentTree.children[i]);
+        }
       }
     }
-    return false;
+    return result;
   };
-  findTarget(target, parentsTree);
+  return findTarget(target, parentsTree);
 };
 
 
