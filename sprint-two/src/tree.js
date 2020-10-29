@@ -2,9 +2,8 @@ var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
 
-  // your code here
   _.extend(newTree, treeMethods);
-  newTree.children = [];  // fix me
+  newTree.children = [];
 
   return newTree;
 };
@@ -37,4 +36,6 @@ treeMethods.contains = function(target) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ treeMethods.addChild: linear time complexity
+ treeMethods.contains: linear time complexity
  */
