@@ -1,17 +1,17 @@
 var Set = function() {
   var set = Object.create(setPrototype);
-  set._storage = [];
+  set._storage = {};
   return set;
 };
 
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  this._storage.push(item);
+  this._storage[item] = item;
 };
 
 setPrototype.contains = function(item) {
-  if (this._storage.includes(item)) {
+  if (this._storage[item]) {
     return true;
   } else {
     return false;
@@ -19,13 +19,12 @@ setPrototype.contains = function(item) {
 };
 
 setPrototype.remove = function(item) {
-  var index = this._storage.indexOf(item);
-  this._storage.splice(index, 1);
+  delete this._storage[item];
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
  .add: constant
- .contains: linear
- .remove: linear
+ .contains: constant
+ .remove: constant
  */
