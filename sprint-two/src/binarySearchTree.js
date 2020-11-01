@@ -16,66 +16,58 @@ var BinarySearchTree = function(value) {
 var binarySearchMethods = {};
 
 binarySearchMethods.insert = function (value) {
-  var insertNode = function (currentNode, newNode) {
-    var newBST = BinarySearchTree(newNode);
-    if (!currentNode.left) {
-      currentNode.left = BinarySearchTree(newNode);
-    }
-    if (!currentNode.right) {
-      currentNode.right = BinarySearchTree(newNode);
-    }
+  var newTree = BinarySearchTree(value);
 
-
-    if (newNode < currentNode.value) {
-      //if (currentNode.left.length === 0) {
-      currentNode.left = newBST;
-      //} else {
-      insertNode(currentNode.left, newNode);
-      //}
-    } else {
-      currentNode.right = newBST;
-      if (currentNode.right.length === 0) {
-        currentNode.right.push(newBST);
+  var addNode = function (currentNode, newTree) {
+    if (newTree.value < currentNode.value) {
+      if (!currentNode.left) {
+        currentNode.left = newTree;
       } else {
-        insertNode(currentNode.right, newNode);
+        addNode(currentNode.left, newTree);
+      }
+    } else {
+      if (!currentNode.right) {
+        currentNode.right = newTree;
+      } else {
+        addNode(currentNode.right, newTree);
       }
     }
   };
-  // var insertValue = function (currentValue, currentNode) {
-  //   var newNode = BinarySearchTree(currentValue);
-  //   if (currentValue < currentNode.node) {
-  //     currentNode.left.push(newNode);
-  //   } else if (currentValue > currentNode.node) {
-  //     currentNode.right.push(newNode);
-  //   }
-
-  // for ( var i = 0; i < currentNode.left.length; i++) {
-  //   insertValue(value, currentNode.left[i]);
-  // }
-
-  // for ( var i = 0; i < currentNode.right.length; i++) {
-  //   insertValue(value, currentNode.right[i]);
-  // }
-  /* for ( var i = 0; i < currentNode.right.length; i++) {
-      if (currentValue < currentNode.right[i].node) {
-        currentNode.left.push(newNode);
-      } else {
-        currentNode.right.push(newNode);
-      }
-    }  */
-  //};
-  insertNode(this, value);
+  addNode(this, newTree);
 };
 
-binarySearchMethods.contains = function (target) {
-
+binarySearchMethods.contains = function (value) {
+  var currentNode = this;
+  while (currentNode) {
+    if (value === currentNode.value) {
+      return true;
+    }
+    if (value < currentNode.value) {
+      currentNode = currentNode.left;
+    } else {
+      currentNode = currentNode.right;
+    }
+  }
+  return false;
 };
 
 binarySearchMethods.depthFirstLog = function (cb) {
-
+  var traverse = function(node) {
+    cb(node.value);
+    if (node.left) {
+      traverse(node.left);
+    }
+    if (node.right) {
+      traverse(node.right);
+    }
+  };
+  traverse(this);
 };
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ .insert: linear
+ .contains: linear
+ .depthFirstLog: linear
  */
