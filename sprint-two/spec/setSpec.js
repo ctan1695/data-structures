@@ -24,4 +24,10 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+  //Adding a unit test per BMR
+  it('should remove values from a set - additional unit test', function() {
+    set.add('Emma Kim');
+    set.remove('Emma Kim');
+    expect(set.contains('Emma Kim')).to.equal(false);
+  });
 });

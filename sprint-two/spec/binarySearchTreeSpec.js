@@ -37,4 +37,13 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3, 7]);
   });
+
+  //Adding a unit test per BMR
+  it('should have a working "contains" method - additional unit test', function() {
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(9);
+    binarySearchTree.insert(12);
+    expect(binarySearchTree.contains(12)).to.equal(true);
+    expect(binarySearchTree.contains(11)).to.equal(false);
+  });
 });

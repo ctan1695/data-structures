@@ -73,4 +73,10 @@ describe('hashTable', function() {
     hashTable.remove('Mr.');
     expect(hashTable._limit).to.equal(8);
   });
+
+  //Adding a unit test per BMR
+  it('should not contain values that were not inserted - additional unit test', function() {
+    hashTable.insert('Emma', 'Chloe');
+    expect(hashTable.retrieve('Emma')).not.to.equal('Kim');
+  });
 });

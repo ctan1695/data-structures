@@ -68,4 +68,20 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  //Adding a unit test per BMR
+  it('should execute a callback on each node in the graph - additional unit test', function() {
+    var connectToTen = function(item) {
+      graph.addEdge(item, 10);
+    };
+    graph.addNode(10);
+    graph.addNode(7);
+    graph.addNode(2);
+    graph.addNode(4);
+    graph.forEachNode(connectToTen);
+    expect(graph.hasEdge(10, 10)).to.equal(true);
+    expect(graph.hasEdge(7, 10)).to.equal(true);
+    expect(graph.hasEdge(2, 10)).to.equal(true);
+    expect(graph.hasEdge(4, 10)).to.equal(true);
+  });
 });

@@ -41,4 +41,14 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  //Adding a unit test per BMR
+  it('should correctly detect nested children - additional unit test', function() {
+    tree.addChild(12);
+    tree.addChild(3);
+    tree.children[0].addChild(9);
+    tree.children[1].addChild(2);
+    expect(tree.contains(9)).to.equal(true);
+    expect(tree.contains(2)).to.equal(true);
+    expect(tree.contains(4)).to.equal(false);
+  });
 });

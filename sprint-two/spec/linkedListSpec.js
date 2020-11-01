@@ -52,4 +52,12 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  //Adding a unit test per BMR
+  it('should not contain a value that was removed - additional unit test', function() {
+    linkedList.addToTail(10);
+    linkedList.addToTail(1);
+    linkedList.removeHead();
+    linkedList.addToTail(3);
+    expect(linkedList.contains(10)).to.equal(false);
+  });
 });
